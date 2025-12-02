@@ -1,24 +1,39 @@
-*{
+/* RESET */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 html,
-body{
+body {
     height: 100%;
     width: 100%;
 }
-html{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-:root{
-    --bg-color: #000000;
-    --bg-button-color: #1a1a1a;
-    --primary-text-color: #f4f4f4;
-    --bg-task-color: #2a2a2a;
-    --delete-color: #ff4d4d;
 
-    /* padding variables*/
+html {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* =========================================
+   CYBER NEON THEME VARIABLES
+========================================= */
+
+:root {
+    --bg-color: #0a0b10;
+    --bg-button-color: #13141a;
+    --primary-text-color: #e4e7ff;
+    --bg-task-color: #1c1e27;
+    --delete-color: #ff4d6d;
+
+    /* Accent Colors */
+    --accent-color: #6c63ff;
+    /* Neon purple */
+    --accent-color-2: #00eaff;
+    /* Neon blue */
+
+    /* Padding */
     --nav-padding: 15px 30px;
     --section-padding: 15px 30px;
     --padding-s: 5px;
@@ -27,24 +42,34 @@ html{
     --padding-xl: 20px;
     --padding-xxl: 30px;
 
-
-    /* border-radius variables */
+    /* Border Radius */
     --border-radius-s: 5px;
     --border-radius-m: 10px;
     --border-radius-l: 15px;
     --border-radius-xl: 20px;
     --border-radius-xxl: 30px;
 }
-body{
+
+/* =========================================
+   BASE UI
+========================================= */
+
+body {
     background-color: var(--bg-color);
     color: var(--primary-text-color);
 }
-main{
+
+main {
     height: 100%;
     display: flex;
     flex-direction: column;
 }
-nav{
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+nav {
     padding: var(--nav-padding);
     display: flex;
     align-items: center;
@@ -53,23 +78,35 @@ nav{
     top: 0;
     background-color: var(--bg-color);
 }
-nav button{
-    background-color: var(--bg-button-color);
+
+nav button {
+    background-color: var(--accent-color);
     border: none;
     outline: none;
     color: var(--primary-text-color);
     padding: var(--padding-m) var(--padding-l);
     cursor: pointer;
     border-radius: var(--border-radius-m);
+    transition: 0.3s ease;
 }
-section{
+
+nav button:hover {
+    background-color: var(--accent-color-2);
+}
+
+/* =========================================
+   SECTION + TASK COLUMNS
+========================================= */
+
+section {
     padding: var(--section-padding);
     display: flex;
     flex-grow: 1;
     justify-content: space-between;
     gap: var(--padding-xxl);
 }
-section .task-column{
+
+section .task-column {
     background-color: var(--bg-button-color);
     flex-grow: 1;
     width: 100%;
@@ -80,17 +117,25 @@ section .task-column{
     border-radius: var(--border-radius-m);
     transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
 }
-section .task-column.hover-over{
-    border: 2px dashed var(--primary-text-color);
+
+section .task-column.hover-over {
+    border: 2px dashed var(--accent-color-2);
     scale: 1.05;
 }
-section .task-column .heading{
+
+section .task-column .heading {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    color: var(--accent-color);
 }
-section .task-column .task{
+
+/* =========================================
+   TASK CARD
+========================================= */
+
+section .task-column .task {
     background-color: var(--bg-task-color);
     padding: var(--padding-m);
     border-radius: var(--border-radius-m);
@@ -98,8 +143,16 @@ section .task-column .task{
     flex-direction: column;
     gap: var(--padding-m);
     cursor: grab;
-} 
-section .task-column .task button{
+    border-left: 3px solid var(--accent-color);
+    transition: 0.2s;
+}
+
+section .task-column .task:hover {
+    border-left: 3px solid var(--accent-color-2);
+    transform: translateX(3px);
+}
+
+section .task-column .task button {
     align-self: flex-end;
     background-color: var(--delete-color);
     border: none;
@@ -109,7 +162,12 @@ section .task-column .task button{
     cursor: pointer;
     border-radius: var(--border-radius-s);
 }
-.modal{
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal {
     position: fixed;
     height: 100vh;
     width: 100vw;
@@ -118,19 +176,21 @@ section .task-column .task button{
     display: none;
     align-items: center;
     justify-content: center;
-
 }
-.modal.active{
+
+.modal.active {
     display: flex;
 }
-.modal .bg{
+
+.modal .bg {
     position: absolute;
     height: 100%;
     width: 100%;
-    background-color: #3b3b3ba8;
+    background-color: #3b3b3b85;
     backdrop-filter: blur(5px);
 }
-.modal .center{
+
+.modal .center {
     background-color: var(--bg-button-color);
     padding: var(--padding-xxl);
     border-radius: var(--border-radius-m);
@@ -138,9 +198,11 @@ section .task-column .task button{
     flex-direction: column;
     gap: var(--padding-m);
     z-index: 10;
-
 }
-.modal .center input, .modal .center textarea, .modal .center select{
+
+.modal .center input,
+.modal .center textarea,
+.modal .center select {
     background-color: var(--bg-task-color);
     border: none;
     outline: none;
@@ -148,8 +210,9 @@ section .task-column .task button{
     padding: var(--padding-m);
     border-radius: var(--border-radius-s);
 }
-.modal .center button{
-    background-color: var(--bg-task-color);
+
+.modal .center button {
+    background-color: var(--accent-color);
     border: none;
     outline: none;
     color: var(--primary-text-color);
@@ -158,4 +221,9 @@ section .task-column .task button{
     border-radius: var(--border-radius-m);
     width: fit-content;
     align-self: center;
+    transition: 0.3s;
+}
+
+.modal .center button:hover {
+    background-color: var(--accent-color-2);
 }
