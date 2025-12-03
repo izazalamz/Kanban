@@ -227,3 +227,104 @@ section .task-column .task button {
 .modal .center button:hover {
     background-color: var(--accent-color-2);
 }
+
+
+
+@media (max-width: 1200px) {
+    section {
+        gap: 20px;
+    }
+
+    nav {
+        padding: 10px 20px;
+    }
+}
+
+
+@media (max-width: 900px) {
+    section {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .task-column {
+        width: 100%;
+    }
+
+    nav .left {
+        font-size: 1.3rem;
+    }
+
+    nav button {
+        padding: 10px 16px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 600px) {
+
+    nav {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    nav .left {
+        font-size: 1.2rem;
+    }
+
+    section {
+        padding: 15px;
+    }
+
+    .task-column {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .task {
+        gap: 8px;
+        padding: 10px;
+    }
+
+    .task button {
+        padding: 4px 8px;
+        font-size: 0.85rem;
+    }
+
+    /* Modal fields scale to mobile width */
+    .modal .center {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .modal .center input,
+    .modal .center textarea {
+        font-size: 1rem;
+    }
+
+    .modal .center button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+
+    nav .left {
+        font-size: 1.1rem;
+    }
+
+    nav button {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .task {
+        font-size: 0.9rem;
+    }
+
+    .task-column .heading .left,
+    .task-column .heading .right {
+        font-size: 0.95rem;
+    }
+}
